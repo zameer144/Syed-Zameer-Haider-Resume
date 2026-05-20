@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syed Zameer Haider - Lead Mobile Application Engineer</title>
+    <title>Syed Zameer Haider - Executive AI-Powered Portfolio Resume</title>
     <style>
         :root {
-            --bg-main: #0b0f19;
-            --bg-card: #131b2e;
+            --bg-deep: #0b0f19;
+            --bg-surface: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.45);
+            --bg-section-mob: rgba(15, 23, 42, 0.6);
             --primary: #38bdf8;
-            --accent: #a78bfa;
-            --text-title: #ffffff;
-            --text-body: #cbd5e1;
+            --accent-ai: #a78bfa;
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --border: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(255, 255, 255, 0.05);
         }
 
         * {
@@ -24,426 +25,659 @@
         }
 
         body {
-            background-color: var(--bg-main);
-            color: var(--text-body);
-            line-height: 1.5;
-            padding: 40px 20px;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
             display: flex;
             justify-content: center;
+            min-height: 100vh;
         }
 
-        /* Single Column Layout Strategy for Flawless ATS Parsing */
-        .ats-resume-wrapper {
+        @keyframes flowGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .resume-container {
             width: 100%;
-            max-width: 850px;
-            background-color: transparent;
+            max-width: 100%;
+            min-height: 100vh;
+            background: rgba(15, 23, 42, 0.85);
             display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        /* Header Architecture */
-        .header-section {
-            background: linear-gradient(135deg, #0f172a 0%, var(--bg-card) 100%);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
+            flex-direction: row;
+            flex-wrap: wrap;
             position: relative;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        .header-section::before {
-            content: '';
+        .top-glow-bar {
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6, #38bdf8);
+            background-size: 300% 300%;
+            animation: flowGlow 6s ease infinite;
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
+            z-index: 10;
         }
 
-        .header-section h1 {
-            font-size: 28pt;
+        /* Laptop Header & Layout Blocks */
+        .mobile-header {
+            display: none;
+        }
+
+        .sidebar {
+            flex: 1 1 320px;
+            background-color: var(--bg-surface);
+            padding: 50px 30px;
+            border-right: 1px solid var(--border-glow);
+        }
+
+        .main-content {
+            flex: 3 1 600px;
+            padding: 50px 45px;
+            background: linear-gradient(135deg, #0b0f19 0%, #0f172a 100%);
+        }
+
+        /* Typography & Layout Elements */
+        .header-block h1 {
+            font-size: 32pt;
             font-weight: 800;
-            color: var(--text-title);
+            color: #ffffff;
             letter-spacing: -0.5px;
-            margin-bottom: 6px;
+            line-height: 1.2;
         }
 
-        .header-section .subtitle {
-            font-size: 14pt;
+        .header-block .title-sub {
+            font-size: 15pt;
             font-weight: 700;
             color: var(--primary);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
+            letter-spacing: 1.5px;
+            margin-top: 8px;
         }
-
-        .header-section .tagline {
-            font-size: 11pt;
-            color: var(--accent);
+        
+        .header-block .ai-tagline {
+            font-size: 11.5pt;
+            color: var(--accent-ai);
             font-weight: 600;
+            margin-top: 6px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 18px;
+            letter-spacing: 1px;
         }
 
-        /* Contact Details Horizontal Flow */
-        .contact-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 10.5pt;
-            color: var(--text-body);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 15px;
-        }
-
-        .contact-item strong {
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        /* Universal Block Architecture */
-        .section-block {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--primary);
-            border-radius: 12px;
-            padding: 26px 24px;
-        }
-
-        .section-block.ai-block {
-            border-left-color: var(--accent);
-        }
-
-        .block-title {
-            font-size: 13pt;
+        .section-title {
+            font-size: 13.5pt;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-title);
+            letter-spacing: 1.2px;
+            color: #ffffff;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding-bottom: 8px;
-            margin-bottom: 16px;
         }
 
-        /* Experience and Timeline Structures */
-        .job-item {
-            margin-bottom: 22px;
+        .sidebar .section-title {
+            color: var(--primary);
+            border-bottom-color: rgba(56, 189, 248, 0.2);
+            margin-top: 30px;
+        }
+        
+        .sidebar .section-title.ai-title {
+            color: var(--accent-ai);
+            border-bottom-color: rgba(167, 139, 250, 0.3);
         }
 
-        .job-item:last-child {
-            margin-bottom: 0;
+        .contact-group {
+            margin-bottom: 20px;
         }
 
-        .job-header {
+        .contact-group strong {
+            display: block;
+            font-size: 9.5pt;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .contact-group span {
+            font-size: 11.5pt;
+            color: #cbd5e1;
+            word-break: break-all;
+        }
+
+        .skills-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .skill-pill {
+            background: rgba(30, 41, 59, 0.8);
+            color: #e2e8f0;
+            font-size: 10pt;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .skill-pill.ai-pill {
+            border-color: rgba(167, 139, 250, 0.3);
+            background: rgba(88, 28, 135, 0.2);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding-left: 22px;
+            border-left: 2px solid #1e293b;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .timeline-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
+            gap: 6px;
             margin-bottom: 4px;
         }
 
-        .job-role {
+        .role-title {
             font-size: 12.5pt;
             font-weight: 700;
-            color: var(--text-title);
+            color: #ffffff;
         }
 
-        .job-company {
+        .company-name {
             font-size: 11pt;
             font-weight: 600;
             color: var(--primary);
         }
 
-        .job-date {
+        .timeline-date {
             font-size: 10.5pt;
             color: var(--text-muted);
             font-weight: 600;
         }
 
-        /* Quantified Bullet Points */
-        .bullet-list {
-            margin-left: 20px;
-            margin-top: 8px;
+        .bullet-points {
             font-size: 11pt;
-            color: var(--text-body);
+            color: #cbd5e1;
+            margin-left: 18px;
+            margin-top: 6px;
         }
 
-        .bullet-list li {
+        .bullet-points li {
             margin-bottom: 6px;
         }
 
-        /* Grid System for Projects */
-        .portfolio-grid {
+        .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 16px;
             margin-top: 12px;
         }
 
-        .project-card {
-            background: rgba(11, 15, 25, 0.5);
-            border: 1px solid var(--border);
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             border-radius: 8px;
-            padding: 16px;
+            padding: 18px;
+            position: relative;
+            transition: all 0.3s ease;
         }
 
-        .project-title {
-            font-size: 11.5pt;
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), transparent);
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .glass-card.wide {
+            grid-column: 1 / -1;
+        }
+
+        .card-title {
+            font-size: 12pt;
             font-weight: 700;
-            color: var(--text-title);
-            margin-bottom: 4px;
+            color: #ffffff;
+            margin-bottom: 6px;
         }
 
-        .project-desc {
+        .card-desc {
             font-size: 10.5pt;
-            color: var(--text-muted);
+            color: #94a3b8;
             text-align: left;
+            line-height: 1.5;
         }
 
-        .project-tech {
+        .card-tech {
             font-size: 9.5pt;
             color: var(--primary);
             font-weight: 600;
-            margin-top: 8px;
+            margin-top: 10px;
             display: block;
         }
 
-        /* Skill Pill Arrays */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+        .edu-item {
+            margin-bottom: 18px;
         }
 
-        .skill-badge {
-            background: rgba(30, 41, 59, 0.6);
-            color: var(--text-body);
-            font-size: 9.5pt;
-            font-weight: 500;
-            padding: 6px 12px;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        /* Universal Fallback Scroll Reveal Settings */
+        .scroll-reveal {
+            opacity: 1;
+            transform: none;
         }
 
-        .skill-badge.ai-badge {
-            border-color: rgba(167, 139, 250, 0.25);
-            background: rgba(88, 28, 135, 0.15);
-        }
-
-        /* Education Component Items */
-        .edu-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-
-        .edu-wrapper:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Mobile Layout Optimizations */
-        @media (max-width: 768px) {
+        /* 📱 EXCLUSIVE ULTRA-STRUCTURED MOBILE UI COMPONENT CSS */
+        @media (max-width: 900px) {
             body {
-                padding: 16px 10px;
+                background-color: #05070f;
             }
 
-            .header-section {
-                padding: 20px 16px;
-            }
-
-            .header-section h1 {
-                font-size: 20pt;
-            }
-
-            .contact-row {
+            .resume-container {
                 flex-direction: column;
-                gap: 8px;
+                background: transparent;
+                padding: 10px;
+                gap: 20px; /* Strong gap between sections on mobile */
+            }
+            
+            /* Section Box Wrapping Architecture */
+            .mobile-section-card {
+                background: var(--bg-section-mob);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                border-radius: 14px;
+                padding: 24px 18px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+                margin-bottom: 5px;
+            }
+
+            /* 1. Header & Personal Details (Boxed Separately on Top) */
+            .mobile-header {
+                display: block;
+                width: 100%;
+                margin-top: 12px;
+            }
+
+            .main-content .header-block {
+                display: none;
+            }
+
+            .mobile-header .header-block h1 {
+                font-size: 22pt;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-bottom: 12px;
+            }
+
+            .mobile-header .title-sub {
+                font-size: 13pt;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .mobile-header .ai-tagline {
+                font-size: 10pt;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            /* Dedicated Quick Contacts block inside Header card */
+            .mobile-contact-grid {
+                background: rgba(30, 41, 59, 0.5);
+                border: 1px solid rgba(56, 189, 248, 0.2);
+                border-radius: 10px;
+                padding: 15px;
+                margin-top: 15px;
+            }
+
+            .mobile-contact-grid .contact-group {
+                margin-bottom: 12px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+                padding-bottom: 8px;
+            }
+
+            .mobile-contact-grid .contact-group:last-child {
+                margin-bottom: 0;
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            /* Re-ordering Layout Blocks */
+            .main-content {
+                order: 1;
+                width: 100%;
+                padding: 0;
+                background: transparent;
+            }
+
+            .sidebar {
+                order: 2;
+                width: 100%;
+                padding: 0;
+                background: transparent;
+                border-right: none;
+            }
+
+            .sidebar .sidebar-mobile-card {
+                background: var(--bg-section-mob);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                border-radius: 14px;
+                padding: 24px 18px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+                margin-bottom: 20px;
+            }
+
+            .sidebar .contact-group {
+                display: none; /* Already showing in top header card */
+            }
+
+            .section-title {
+                font-size: 12.5pt;
+                margin-top: 5px;
+                margin-bottom: 15px;
+                color: var(--primary);
+                border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+            }
+
+            .timeline-header {
+                flex-direction: column;
                 align-items: flex-start;
-                padding-left: 10px;
-            }
-
-            .job-header {
-                flex-direction: column;
                 gap: 2px;
+                margin-bottom: 6px;
             }
 
-            .portfolio-grid {
-                grid-template-columns: 1fr;
+            /* Smooth Scroll Reveal Mechanics */
+            .scroll-reveal {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+                will-change: opacity, transform;
+            }
+
+            .scroll-reveal.revealed {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
 
-<div class="ats-resume-wrapper">
+<div class="resume-container">
+    <div class="top-glow-bar"></div>
 
-    <header class="header-section">
-        <h1>SYED ZAMEER HAIDER</h1>
-        <div class="subtitle">Lead Mobile Application Engineer</div>
-        <div class="tagline">AI-Augmented Full-Stack Mobile Architect</div>
+    <div class="mobile-header mobile-section-card">
+        <div class="header-block">
+            <h1>SYED ZAMEER HAIDER</h1>
+            <div class="title-sub">Lead Mobile Application Engineer</div>
+            <div class="ai-tagline">AI-Augmented Full-Stack Mobile Architect</div>
+        </div>
         
-        <div class="contact-row">
-            <div class="contact-item"><strong>Email:</strong> sumair.haider14@gmail.com</div>
-            <div class="contact-item"><strong>Phone:</strong> +92 315 3789003</div>
-            <div class="contact-item"><strong>Location:</strong> Hyderabad, Sindh, Pakistan</div>
-        </div>
-    </header>
-
-    <section class="section-block">
-        <div class="block-title">Executive Summary</div>
-        <p style="font-size: 11pt; color: var(--text-body); text-align: left; line-height: 1.6;">
-            Enterprise-grade <strong>Lead Mobile Application Engineer</strong> with <strong>8+ years of expertise</strong> (2018 — 2026). Industry pioneer in <strong>AI-augmented mobile engineering</strong>, leveraging advanced generative AI frameworks to architect, scale, and ship apps across multiple production environments, including <strong>React Native, Expo, Flutter, Android Native, and iOS Native</strong>. Expert in cross-platform performance optimization, complex data synchronization engines, fluid design tokens, and highly stable micro-animation ecosystems.
-        </p>
-    </section>
-
-    <section class="section-block ai-block">
-        <div class="block-title" style="color: var(--accent);">AI & Multi-Platform Adaptive Capabilities</div>
-        <ul class="bullet-list">
-            <li><strong>AI-Powered Automation:</strong> Integrating paid AI copilot tooling workflows to accelerate core logic generation, test coverage workflows, and complex payload transformations by 40%.</li>
-            <li><strong>Universal Architecture Agility:</strong> Engineering modular native integrations fluidly across Flutter platforms, Jetpack Compose UI frameworks, and React Native CLI.</li>
-        </ul>
-    </section>
-
-    <section class="section-block">
-        <div class="block-title">Work Experience History</div>
-
-        <div class="job-item">
-            <div class="job-header">
-                <div>
-                    <span class="job-role">Team Lead - Mobile App Engineering</span> | 
-                    <span class="job-company">Dosafar.com</span>
-                </div>
-                <span class="job-date">2021 — Present</span>
+        <div class="mobile-contact-grid">
+            <div class="contact-group" style="display: block !important;">
+                <strong>Email Address</strong>
+                <span>sumair.haider14@gmail.com</span>
             </div>
-            <ul class="bullet-list">
-                <li>Directing development blueprints for a multi-tenant mobile transportation ecosystem serving thousands of active transit operators.</li>
-                <li>Leveraged AI code optimization pipelines to refactor deep local database workflows, lowering system memory allocation overhead.</li>
-                <li>Pioneered responsive UI systems, secure passenger checkout integrations, and real-time deep-linking route schemes.</li>
+            <div class="contact-group" style="display: block !important;">
+                <strong>Contact Number</strong>
+                <span>+92 315 3789003</span>
+            </div>
+            <div class="contact-group" style="display: block !important;">
+                <strong>Location</strong>
+                <span>Hyderabad, Sindh, Pakistan</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="contact-group">
+            <strong>Email Address</strong>
+            <span>sumair.haider14@gmail.com</span>
+        </div>
+        <div class="contact-group">
+            <strong>Contact Number</strong>
+            <span>+92 315 3789003</span>
+        </div>
+        <div class="contact-group">
+            <strong>Location</strong>
+            <span>Hyderabad, Sindh, Pakistan</span>
+        </div>
+
+        <div class="sidebar-mobile-card scroll-reveal">
+            <div class="section-title ai-title">AI & Next-Gen Stack</div>
+            <div class="skills-flex">
+                <span class="skill-pill ai-pill">AI LLM Prompting & Ops</span>
+                <span class="skill-pill ai-pill">AI Code Copilots</span>
+                <span class="skill-pill ai-pill">Cross-Stack Architect</span>
+                <span class="skill-pill ai-pill">Flutter Cross-Platform</span>
+                <span class="skill-pill ai-pill">Jetpack Compose</span>
+                <span class="skill-pill ai-pill">iOS Native UI</span>
+            </div>
+        </div>
+
+        <div class="sidebar-mobile-card scroll-reveal">
+            <div class="section-title">Technical Mastery</div>
+            <div class="skills-flex">
+                <span class="skill-pill">React Native (CLI/Expo)</span>
+                <span class="skill-pill">Android Native</span>
+                <span class="skill-pill">TypeScript & JS</span>
+                <span class="skill-pill">Kotlin / Java</span>
+                <span class="skill-pill">Redux / MobX</span>
+                <span class="skill-pill">REST APIs / Postman</span>
+                <span class="skill-pill">Firebase Ecosystem</span>
+                <span class="skill-pill">Push Notifications</span>
+                <span class="skill-pill">Deep Linking / App Links</span>
+                <span class="skill-pill">UI/UX Glassmorphism</span>
+                <span class="skill-pill">State Management</span>
+                <span class="skill-pill">CI/CD & App Stores</span>
+                <span class="skill-pill">Agile Scrum / Team Lead</span>
+                <span class="skill-pill">Sentry Bug Tracking</span>
+            </div>
+        </div>
+
+        <div class="sidebar-mobile-card scroll-reveal">
+            <div class="section-title">Certifications</div>
+            <div class="contact-group" style="display: block; margin-bottom: 15px;">
+                <span class="timeline-date">2018</span>
+                <div style="font-size: 10.5pt; font-weight:700; margin-top:2px; color:#ffffff;">Certified Android Development</div>
+                <div style="font-size: 9.5pt; color: var(--text-muted);">Gexton Education, Pakistan</div>
+            </div>
+            <div class="contact-group" style="display: block; margin-bottom: 0;">
+                <span class="timeline-date">2017</span>
+                <div style="font-size: 10.5pt; font-weight:700; margin-top:2px; color:#ffffff;">Professional Java Certified</div>
+                <div style="font-size: 9.5pt; color: var(--text-muted);">Gexton Education, Pakistan</div>
+            </div>
+        </div>
+
+        <div class="sidebar-mobile-card scroll-reveal">
+            <div class="section-title">Languages</div>
+            <div style="font-size: 11.5pt; color: #cbd5e1; margin-bottom: 6px;">Urdu <span style="color:var(--text-muted); font-size:9.5pt;">(Native)</span></div>
+            <div style="font-size: 11.5pt; color: #cbd5e1;">English <span style="color:var(--text-muted); font-size:9.5pt;">(Professional)</span></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header-block">
+            <h1>SYED ZAMEER HAIDER</h1>
+            <div class="title-sub">Lead Mobile Application Engineer</div>
+            <div class="ai-tagline">AI-Augmented Full-Stack Mobile Architect</div>
+        </div>
+
+        <div class="mobile-section-card scroll-reveal">
+            <div class="section-title">Executive Summary</div>
+            <p style="font-size: 11pt; color: #cbd5e1; text-align: left; line-height: 1.6;">
+                Enterprise-grade <strong>Lead Mobile Application Engineer</strong> with <strong>8+ years of robust expertise</strong> (2018 – 2026). Industry pioneer in <strong>AI-augmented mobile engineering</strong>, leveraging advanced generative AI frameworks and premium production systems to architect, scale, and ship apps fluidly across any ecosystem—including <strong>React Native, Expo, Flutter, Android Native (Jetpack Compose), and iOS Native</strong>. Master of end-to-end delivery, effortlessly taking ownership of complex micro-animations, design tokens, responsive layout syntax, and highly stable backend communication logic.
+            </p>
+            
+            <p style="font-size: 11pt; color: #cbd5e1; text-align: left; margin-top: 15px; margin-bottom: 10px; line-height: 1.6;">
+                Leveraging state-of-the-art AI development environments, I accelerate complex architectural builds from scratch to production:
+            </p>
+            <ul style="font-size: 10.5pt; color: #cbd5e1; margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 4px;"><strong>Universal Platform Agility:</strong> Seamless engineering modules across Flutter, Compose, Swift UI, and React Native.</li>
+                <li style="margin-bottom: 4px;"><strong>Logic Acceleration:</strong> Speeding up deep database sync algorithms and logical layers via AI tools securely.</li>
             </ul>
         </div>
 
-        <div class="job-item">
-            <div class="job-header">
-                <div>
-                    <span class="job-role">Senior React Native Developer</span> | 
-                    <span class="job-company">NextApp IS</span>
+        <div class="mobile-section-card scroll-reveal">
+            <div class="section-title">Chronological Career History</div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="role-title">Team Lead - Mobile App Engineering</span>
+                    <span class="timeline-date">2019 — Present</span>
                 </div>
-                <span class="job-date">2019 — 2021</span>
+                <div class="company-name">Dosafar.com</div>
+                <ul class="bullet-points">
+                    <li>Directing architecture & execution blueprints for multi-tenant mobile transportation ecosystems.</li>
+                    <li>Integrating AI engineering workflows to accelerate platform migrations and cross-testing coverage.</li>
+                    <li>Pioneered fluid UI optimization workflows, deep-linking, and optimized REST payload architectures.</li>
+                </ul>
             </div>
-            <ul class="bullet-list">
-                <li>Architected commercial high-scale hybrid software systems utilizing custom hardware bridges and optimized application states.</li>
-                <li>Integrated global state management architectures (Redux/MobX) to guarantee responsive rendering structures across legacy Android systems.</li>
-            </ul>
-        </div>
 
-        <div class="job-item">
-            <div class="job-header">
-                <div>
-                    <span class="job-role">Android App Developer</span> | 
-                    <span class="job-company">AppsXone</span>
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="role-title">Senior React Native Developer</span>
+                    <span class="timeline-date">2019 — Present</span>
                 </div>
-                <span class="job-date">2018 — 2019</span>
+                <div class="company-name">NextApp IS</div>
+                <ul class="bullet-points">
+                    <li>Engineered high-scale commercial hybrid apps with advanced caching layers and robust modular logic.</li>
+                    <li>Integrated responsive global state engines (Redux/MobX) alongside native system hardware bridges.</li>
+                </ul>
             </div>
-            <ul class="bullet-list">
-                <li>Promoted rapidly to Core Engineer to handle mission-critical localized agency data sync layouts and provider storage APIs.</li>
-            </ul>
-        </div>
-    </section>
 
-    <section class="section-block">
-        <div class="block-title">Technical Skills Mastery</div>
-        <div style="margin-bottom: 12px;">
-            <strong style="font-size: 10pt; color: var(--accent); display: block; margin-bottom: 6px; text-transform: uppercase;">AI Ecosystems:</strong>
-            <div class="skills-container">
-                <span class="skill-badge ai-badge">AI LLM Prompting & Ops</span>
-                <span class="skill-badge ai-badge">AI Code Copilots</span>
-                <span class="skill-badge ai-badge">Cross-Stack Automation</span>
+            <div class="timeline-item" style="margin-bottom: 0;">
+                <div class="timeline-header">
+                    <span class="role-title">Android App Developer</span>
+                    <span class="timeline-date">2018 — 2019</span>
+                </div>
+                <div class="company-name">AppsXone</div>
+                <ul class="bullet-points">
+                    <li>Promoted rapidly from an entry-level technical role to the primary Core Engineer managing critical provider backend infrastructures.</li>
+                </ul>
             </div>
         </div>
-        <div>
-            <strong style="font-size: 10pt; color: var(--primary); display: block; margin-bottom: 6px; text-transform: uppercase;">Core Technologies:</strong>
-            <div class="skills-container">
-                <span class="skill-badge">React Native (CLI/Expo)</span>
-                <span class="skill-badge">Android Native</span>
-                <span class="skill-badge">TypeScript & JS</span>
-                <span class="skill-badge">Kotlin & Java</span>
-                <span class="skill-badge">Flutter Engine</span>
-                <span class="skill-badge">Redux / MobX</span>
-                <span class="skill-badge">REST APIs / Postman</span>
-                <span class="skill-badge">Firebase Integration</span>
-                <span class="skill-badge">Push Notifications</span>
-                <span class="skill-badge">Deep Linking Logic</span>
-                <span class="skill-badge">UI/UX Glassmorphism</span>
-                <span class="skill-badge">CI/CD App Deployments</span>
-                <span class="skill-badge">Sentry Bug Diagnostics</span>
-            </div>
-        </div>
-    </section>
 
-    <section class="section-block">
-        <div class="block-title">Premium Production Portfolio</div>
-        <div class="portfolio-grid">
-            <div class="project-card">
-                <div class="project-title">Dosafar Passenger</div>
-                <p class="project-desc">Real-time bus ticketing solution featuring dynamic multi-operator scheduling, instant payment routing, and seat selections.</p>
-                <span class="project-tech">React Native, Push Notifications, Map APIs</span>
-            </div>
-            <div class="project-card">
-                <div class="project-title">Dosafar Operation</div>
-                <p class="project-desc">Heavy-duty administrative hub tool handling offline agency transactions, real-time sync systems, and validation.</p>
-                <span class="project-tech">Android Native, Local Database Sync, REST Logs</span>
-            </div>
-            <div class="project-card">
-                <div class="project-title">Dosafar Driver</div>
-                <p class="project-desc">High-performance utility maximizing smart driver bidding, navigation routines, and real-time client location telemetry.</p>
-                <span class="project-tech">React Native CLI, Socket.io, Location Bridges</span>
-            </div>
-            <div class="project-card">
-                <div class="project-title">Al Emad / Caryaati</div>
-                <p class="project-desc">Elite global multi-vendor car rental system with complex parameter filtration matrices and smooth client onboarding.</p>
-                <span class="project-tech">React Native Expo, Redux, Performance Profilers</span>
-            </div>
-            <div class="project-card">
-                <div class="project-title">MyStay (Oman)</div>
-                <p class="project-desc">Luxury hospitality portal handling real-time reservation systems, pricing variations, and detailed property amenities.</p>
-                <span class="project-tech">React Native, State Management, Custom UI</span>
-            </div>
-            <div class="project-card">
-                <div class="project-title">Foodwalay</div>
-                <p class="project-desc">Hyper-local rapid-delivery app handling live tracking telemetry, automated status triggers, and optimized caching workflows.</p>
-                <span class="project-tech">React Native CLI, Firebase Analytics, Sentry</span>
+        <div class="mobile-section-card scroll-reveal">
+            <div class="section-title">Premium Production Portfolio</div>
+            <div class="cards-grid">
+                <div class="glass-card">
+                    <div class="card-title">Dosafar Passenger</div>
+                    <div class="card-desc">Real-time bus ticketing solution featuring dynamic multi-operator scheduling, instant payment routing, and seat selections.</div>
+                    <span class="card-tech">React Native, Push Notifications, Map APIs</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Dosafar Operation</div>
+                    <div class="card-desc">Heavy-duty administrative hub tool handling offline agency transactions, real-time sync systems, and validation.</div>
+                    <span class="card-tech">Android Native, Local Database Sync, REST Logs</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Dosafar Driver</div>
+                    <div class="card-desc">High-performance utility maximizing smart driver bidding, navigation routines, and real-time client location telemetry.</div>
+                    <span class="card-tech">React Native CLI, Socket.io, Location Bridges</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Al Emad / Caryaati (Softseek)</div>
+                    <div class="card-desc">Elite global multi-vendor car rental system with complex parameter filtration matrices and smooth client onboarding.</div>
+                    <span class="card-tech">React Native Expo, Redux, Performance Profilers</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">MyStay (Ramz Sol Oman)</div>
+                    <div class="card-desc">Luxury hospitality portal handling real-time reservation systems, pricing variations, and detailed property amenities.</div>
+                    <span class="card-tech">React Native, State Management, Custom UI</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Foodwalay</div>
+                    <div class="card-desc">Hyper-local rapid-delivery app handling live tracking telemetry, automated status triggers, and optimized caching workflows.</div>
+                    <span class="card-tech">React Native CLI, Firebase Analytics, Sentry</span>
+                </div>
+                <div class="glass-card wide">
+                    <div class="card-title">TriMeditation</div>
+                    <div class="card-desc">Premium mental health wellness app equipped with micro-interaction loops, ambient audio playback engines, and smart dynamic scheduling push notifications.</div>
+                    <span class="card-tech">Animations, Local Push Notification Scheduling, MobX Architecture</span>
+                </div>
             </div>
         </div>
-    </section>
 
-    <section class="section-block">
-        <div class="block-title">Education & Certifications</div>
-        <div class="edu-wrapper">
-            <div>
-                <strong style="color: #ffffff; font-size: 11pt;">BS in Software Engineering</strong> — 
-                <span style="color: var(--primary);">University of Sindh, Pakistan</span>
+        <div class="mobile-section-card scroll-reveal">
+            <div class="section-title">Academic Credentials</div>
+            <div class="edu-item">
+                <div style="display: flex; justify-content: space-between; font-size: 11pt; flex-wrap: wrap; gap: 4px;">
+                    <strong style="color: #ffffff;">BS in Software Engineering</strong>
+                    <span style="color: var(--text-muted); font-weight: 600;">2014 — 2018</span>
+                </div>
+                <div style="font-size: 10.5pt; color: var(--primary);">University of Sindh, Pakistan</div>
             </div>
-            <span class="job-date">2014 — 2018</span>
-        </div>
-        <div class="edu-wrapper" style="margin-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 12px;">
-            <div>
-                <strong style="color: #ffffff; font-size: 11pt;">Certified Android Specialist</strong> — 
-                <span style="color: var(--text-muted);">Gexton Education</span>
+            <div class="edu-item" style="margin-bottom: 0;">
+                <div style="display: flex; justify-content: space-between; font-size: 11pt; flex-wrap: wrap; gap: 4px;">
+                    <strong style="color: #ffffff;">HSC (Pre-Engineering)</strong>
+                    <span style="color: var(--text-muted); font-weight: 600;">2011 — 2013</span>
+                </div>
+                <div style="font-size: 10.5pt; color: var(--primary);">Sindh Board of Intermediate & Secondary Education, Pakistan</div>
             </div>
-            <span class="job-date">2018</span>
         </div>
-    </section>
-
+    </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: "0px 0px -40px 0px",
+            threshold: 0.05
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(element => {
+            revealOnScroll.observe(element);
+        });
+    });
+</script>
 
 </body>
 </html>
