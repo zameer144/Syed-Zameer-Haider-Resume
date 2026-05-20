@@ -69,6 +69,16 @@
             z-index: 10;
         }
 
+        /* Mobile Header Element (Hidden on Laptop) */
+        .mobile-header {
+            display: none;
+            width: 100%;
+            padding: 40px 24px 20px 24px;
+            background: linear-gradient(135deg, #0f172a 0%, #0b0f19 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 6px;
+        }
+
         .sidebar {
             flex: 1 1 320px;
             background-color: var(--bg-surface);
@@ -83,7 +93,7 @@
         }
 
         .header-block h1 {
-            font-size: 32pt; /* Increased from 28pt */
+            font-size: 32pt;
             font-weight: 800;
             color: #ffffff;
             letter-spacing: -0.5px;
@@ -91,7 +101,7 @@
         }
 
         .header-block .title-sub {
-            font-size: 15pt; /* Increased from 14pt */
+            font-size: 15pt;
             font-weight: 700;
             color: var(--primary);
             text-transform: uppercase;
@@ -100,7 +110,7 @@
         }
         
         .header-block .ai-tagline {
-            font-size: 11.5pt; /* Increased from 10.5pt */
+            font-size: 11.5pt;
             color: var(--accent-ai);
             font-weight: 600;
             margin-top: 6px;
@@ -109,7 +119,7 @@
         }
 
         .section-title {
-            font-size: 13.5pt; /* Increased from 12pt */
+            font-size: 13.5pt;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.2px;
@@ -139,7 +149,7 @@
 
         .contact-group strong {
             display: block;
-            font-size: 9.5pt; /* Increased from 8.5pt */
+            font-size: 9.5pt;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -147,7 +157,7 @@
         }
 
         .contact-group span {
-            font-size: 11.5pt; /* Increased from 10.5pt */
+            font-size: 11.5pt;
             color: #cbd5e1;
             word-break: break-all;
         }
@@ -162,7 +172,7 @@
         .skill-pill {
             background: rgba(30, 41, 59, 0.8);
             color: #e2e8f0;
-            font-size: 10pt; /* Increased from 9pt */
+            font-size: 10pt;
             font-weight: 500;
             padding: 8px 14px;
             border-radius: 6px;
@@ -217,25 +227,25 @@
         }
 
         .role-title {
-            font-size: 12.5pt; /* Increased from 11.5pt */
+            font-size: 12.5pt;
             font-weight: 700;
             color: #ffffff;
         }
 
         .company-name {
-            font-size: 11pt; /* Increased from 10pt */
+            font-size: 11pt;
             font-weight: 600;
             color: var(--primary);
         }
 
         .timeline-date {
-            font-size: 10.5pt; /* Increased from 9.5pt */
+            font-size: 10.5pt;
             color: var(--text-muted);
             font-weight: 600;
         }
 
         .bullet-points {
-            font-size: 11pt; /* Increased from 10pt */
+            font-size: 11pt;
             color: #cbd5e1;
             margin-left: 18px;
             margin-top: 6px;
@@ -285,21 +295,21 @@
         }
 
         .card-title {
-            font-size: 12pt; /* Increased from 11pt */
+            font-size: 12pt;
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 6px;
         }
 
         .card-desc {
-            font-size: 10.5pt; /* Increased from 9.5pt */
+            font-size: 10.5pt;
             color: #94a3b8;
             text-align: justify;
             line-height: 1.5;
         }
 
         .card-tech {
-            font-size: 9.5pt; /* Increased from 8.5pt */
+            font-size: 9.5pt;
             color: var(--primary);
             font-weight: 600;
             margin-top: 10px;
@@ -310,22 +320,40 @@
             margin-bottom: 18px;
         }
 
-        /* Mobile Formatting & Responsiveness Updates */
+        /* 📱 CRITICAL MOBILE VIEW RE-ORDERING ARCHITECTURE */
         @media (max-width: 900px) {
             .resume-container {
                 flex-direction: column;
             }
+            
+            /* Show Name and Title on very top of Mobile View */
+            .mobile-header {
+                display: block;
+            }
+
+            /* Hide Laptop Header Block to avoid duplication */
+            .main-content .header-block {
+                display: none;
+            }
+
+            /* Move Sidebar (Contacts/Skills) to the bottom of the page */
             .sidebar {
+                order: 2; 
                 border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
                 padding: 40px 24px;
             }
+
+            /* Keep Primary Content (Summary/Experience) right below Mobile Header */
             .main-content {
-                padding: 40px 24px;
+                order: 1;
+                padding: 30px 24px 40px 24px;
             }
-            .header-block h1 {
-                font-size: 26pt; /* Balanced for mobile view */
+
+            .mobile-header .header-block h1 {
+                font-size: 24pt; /* Balanced perfectly for smaller mobile devices */
             }
+
             .timeline-header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -338,6 +366,14 @@
 
 <div class="resume-container">
     <div class="top-glow-bar"></div>
+
+    <div class="mobile-header">
+        <div class="header-block">
+            <h1>SYED ZAMEER HAIDER</h1>
+            <div class="title-sub">Lead Mobile Application Engineer</div>
+            <div class="ai-tagline">AI-Augmented Full-Stack Mobile Architect</div>
+        </div>
+    </div>
 
     <div class="sidebar">
         <div class="contact-group">
