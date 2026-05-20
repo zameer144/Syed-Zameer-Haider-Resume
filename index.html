@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syed Zameer Haider - Executive Portfolio Resume</title>
+    <title>Syed Zameer Haider - Executive AI-Powered Portfolio Resume</title>
     <style>
         :root {
             --bg-deep: #0b0f19;
             --bg-surface: #0f172a;
-            --bg-card: rgba(30, 41, 59, 0.4);
+            --bg-card: rgba(30, 41, 59, 0.45);
             --primary: #38bdf8;
+            --accent-ai: #a78bfa;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --border-glow: rgba(56, 189, 248, 0.2);
+            --border-glow: rgba(167, 139, 250, 0.25);
         }
 
         * {
@@ -31,7 +32,6 @@
             justify-content: center;
         }
 
-        /* Continuous High-Tech Gradient Animation */
         @keyframes flowGlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -43,26 +43,24 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Glassmorphism Interactive Grid Container */
         .resume-container {
-            max-width: 900px;
+            max-width: 950px;
             width: 100%;
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.85);
             border: 1px solid var(--border-glow);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);
+            border-radius: 14px;
             overflow: hidden;
             display: flex;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
             position: relative;
             animation: fadeIn 0.8s ease-out;
         }
 
-        /* High-tech top border line animation */
         .top-glow-bar {
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #38bdf8, #818cf8, #a78bfa, #38bdf8);
+            height: 6px;
+            background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6, #38bdf8);
             background-size: 300% 300%;
             animation: flowGlow 6s ease infinite;
             position: absolute;
@@ -70,17 +68,15 @@
             left: 0;
         }
 
-        /* Sidebar - Fully Flexible */
         .sidebar {
-            flex: 1 1 280px;
+            flex: 1 1 290px;
             background-color: var(--bg-surface);
             padding: 40px 25px;
             border-right: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Main Body Area */
         .main-content {
-            flex: 2 1 550px;
+            flex: 2 1 580px;
             padding: 40px 35px;
             background: linear-gradient(135deg, #0b0f19 0%, #0f172a 100%);
         }
@@ -94,12 +90,21 @@
         }
 
         .header-block .title-sub {
-            font-size: 12pt;
+            font-size: 12.5pt;
             font-weight: 700;
             color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-top: 5px;
+        }
+        
+        .header-block .ai-tagline {
+            font-size: 10pt;
+            color: var(--accent-ai);
+            font-weight: 600;
+            margin-top: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .section-title {
@@ -120,6 +125,11 @@
             color: var(--primary);
             border-bottom-color: rgba(56, 189, 248, 0.2);
         }
+        
+        .sidebar .section-title.ai-title {
+            color: var(--accent-ai);
+            border-bottom-color: rgba(167, 139, 250, 0.3);
+        }
 
         .contact-group {
             margin-bottom: 15px;
@@ -138,7 +148,6 @@
             color: #cbd5e1;
         }
 
-        /* Pill Badges with Micro-Interactive Animations */
         .skills-flex {
             display: flex;
             flex-wrap: wrap;
@@ -154,7 +163,12 @@
             padding: 6px 12px;
             border-radius: 6px;
             border: 1px solid rgba(56, 189, 248, 0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-pill.ai-pill {
+            border-color: rgba(167, 139, 250, 0.3);
+            background: rgba(88, 28, 135, 0.2);
         }
 
         .skill-pill:hover {
@@ -164,7 +178,12 @@
             box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
         }
 
-        /* Work Timeline Blocks */
+        .skill-pill.ai-pill:hover {
+            background: rgba(167, 139, 250, 0.25);
+            border-color: var(--accent-ai);
+            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.25);
+        }
+
         .timeline-item {
             position: relative;
             margin-bottom: 25px;
@@ -221,7 +240,6 @@
             margin-bottom: 4px;
         }
 
-        /* Portfolio Cards Grid with Liquid Glass Hover Styles */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -321,6 +339,16 @@
             <span>Hyderabad, Sindh, Pakistan</span>
         </div>
 
+        <div class="section-title ai-title">AI & Next-Gen Stack</div>
+        <div class="skills-flex">
+            <span class="skill-pill ai-pill">AI LLM Prompting & Ops</span>
+            <span class="skill-pill ai-pill">AI Code Copilots</span>
+            <span class="skill-pill ai-pill">Cross-Stack Architect</span>
+            <span class="skill-pill ai-pill">Flutter Cross-Platform</span>
+            <span class="skill-pill ai-pill">Jetpack Compose</span>
+            <span class="skill-pill ai-pill">iOS Native UI</span>
+        </div>
+
         <div class="section-title">Technical Mastery</div>
         <div class="skills-flex">
             <span class="skill-pill">React Native (CLI/Expo)</span>
@@ -360,12 +388,23 @@
         <div class="header-block">
             <h1>SYED ZAMEER HAIDER</h1>
             <div class="title-sub">Lead Mobile Application Engineer</div>
+            <div class="ai-tagline">AI-Augmented Full-Stack Mobile Architect</div>
         </div>
 
         <div class="section-title">Executive Summary</div>
-        <p style="font-size: 10pt; color: #cbd5e1; text-align: justify;">
-            Enterprise-grade Lead Mobile Application Engineer with 8+ years of robust expertise (2018 – 2026) in architecting elite multi-platform products. Proven record leveraging React Native (CLI/Expo) and Android Native (Kotlin/Java) to deploy fast, scalable, and responsive infrastructure. Master at driving end-to-end agile lifecycles, advanced state workflows, and cross-functional teams to build award-winning applications with premium interactive UI layouts.
+        <p style="font-size: 10pt; color: #cbd5e1; text-align: justify; line-height: 1.5;">
+            Enterprise-grade **Lead Mobile Application Engineer** with **8+ years of robust expertise** (2018 – 2026). Industry pioneer in **AI-augmented mobile engineering**, leveraging advanced generative AI frameworks and premium production systems to architect, scale, and ship apps fluidly across any ecosystem—including **React Native, Expo, Flutter, Android Native (Jetpack Compose), and iOS Native**. Master of end-to-end delivery, effortlessly taking ownership of complex micro-animations, design tokens, responsive layout syntax, and highly stable backend communication logic.
         </p>
+
+        <div class="section-title">AI & Multi-Platform Adaptive Capabilities</div>
+        <p style="font-size: 10pt; color: #cbd5e1; text-align: justify; margin-bottom: 12px; line-height: 1.5;">
+            Leveraging state-of-the-art AI development environments and paid developer tooling pipelines, I accelerate complex architectural builds from scratch to production:
+        </p>
+        <ul style="font-size: 9.5pt; color: #cbd5e1; margin-left: 20px; line-height: 1.5;">
+            <li style="margin-bottom: 5px;">**Universal Platform Agility:** Seamlessly engineering high-fidelity modules across Flutter, Jetpack Compose, iOS Swift UI, and React Native CLI.</li>
+            <li style="margin-bottom: 5px;">**AI-Powered Logic Acceleration:** Utilizing AI tools to speed up deep database sync algorithms, complex business logical layers, and custom encryption workflows without sacrificing security.</li>
+            <li style="margin-bottom: 5px;">**End-to-End Execution:** Combining 8 years of foundational engineering experience with AI execution power to craft seamless interactive interfaces, pixel-perfect layouts, and enterprise architecture blueprints single-handedly.</li>
+        </ul>
 
         <div class="section-title">Chronological Career History</div>
 
@@ -377,8 +416,8 @@
             <div class="company-name">Dosafar.com</div>
             <ul class="bullet-points">
                 <li>Directing architecture & execution blueprints for highly resilient multi-tenant mobile transportation ecosystems.</li>
+                <li>Integrating advanced AI engineering workflows to accelerate platform migrations and multi-platform testing coverage.</li>
                 <li>Pioneered fluid UI optimization workflows, deep-linking routing paths, and optimized REST API payload architectures.</li>
-                <li>Managing global cross-functional engineering squads, version controls, and continuous app store deployment tracks.</li>
             </ul>
         </div>
 
