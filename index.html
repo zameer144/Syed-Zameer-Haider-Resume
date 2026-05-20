@@ -69,7 +69,7 @@
             z-index: 10;
         }
 
-        /* Mobile Header Element (Visible on Mobile Only) */
+        /* Mobile Header Element */
         .mobile-header {
             display: none;
             width: 100%;
@@ -98,6 +98,7 @@
             color: #ffffff;
             letter-spacing: -0.5px;
             line-height: 1.2;
+            text-align: left;
         }
 
         .header-block .title-sub {
@@ -107,6 +108,7 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-top: 8px;
+            text-align: left;
         }
         
         .header-block .ai-tagline {
@@ -116,6 +118,7 @@
             margin-top: 6px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-align: left;
         }
 
         .section-title {
@@ -130,6 +133,7 @@
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding-bottom: 8px;
+            text-align: left;
         }
 
         .sidebar .section-title {
@@ -145,6 +149,7 @@
 
         .contact-group {
             margin-bottom: 20px;
+            text-align: left;
         }
 
         .contact-group strong {
@@ -160,6 +165,7 @@
             font-size: 11.5pt;
             color: #cbd5e1;
             word-break: break-all;
+            text-align: left;
         }
 
         .skills-flex {
@@ -167,6 +173,7 @@
             flex-wrap: wrap;
             gap: 10px;
             margin-top: 12px;
+            justify-content: flex-start;
         }
 
         .skill-pill {
@@ -203,6 +210,7 @@
             margin-bottom: 30px;
             padding-left: 22px;
             border-left: 2px solid #1e293b;
+            text-align: left;
         }
 
         .timeline-item::before {
@@ -224,6 +232,7 @@
             flex-wrap: wrap;
             gap: 6px;
             margin-bottom: 4px;
+            text-align: left;
         }
 
         .role-title {
@@ -249,6 +258,7 @@
             color: #cbd5e1;
             margin-left: 18px;
             margin-top: 6px;
+            text-align: left;
         }
 
         .bullet-points li {
@@ -269,6 +279,7 @@
             padding: 20px;
             position: relative;
             transition: all 0.3s ease;
+            text-align: left; /* Removed justify alignment */
         }
 
         .glass-card:hover {
@@ -304,7 +315,7 @@
         .card-desc {
             font-size: 10.5pt;
             color: #94a3b8;
-            text-align: justify;
+            text-align: left; /* Fixed the massive spacing gaps */
             line-height: 1.5;
         }
 
@@ -318,15 +329,16 @@
 
         .edu-item {
             margin-bottom: 18px;
+            text-align: left;
         }
 
-        /* 🚀 MOBILE SCROLL ANIMATION CSS ENGINE */
+        /* MOBILE SCROLL ANIMATION CSS ENGINE */
         .scroll-reveal {
             opacity: 1;
             transform: none;
         }
 
-        /* 📱 MOBILE ARCHITECTURE & RESPONSIVENESS CONFIGURATION */
+        /* MOBILE ARCHITECTURE & RESPONSIVENESS */
         @media (max-width: 900px) {
             .resume-container {
                 flex-direction: column;
@@ -362,7 +374,6 @@
                 gap: 2px;
             }
 
-            /* Enable Smooth Scroll Transitions explicitly for Mobile Devices */
             .scroll-reveal {
                 opacity: 0;
                 transform: translateY(25px);
@@ -370,7 +381,6 @@
                 will-change: opacity, transform;
             }
 
-            /* Active state injected by JS intersection listener */
             .scroll-reveal.revealed {
                 opacity: 1;
                 transform: translateY(0);
@@ -459,14 +469,14 @@
 
         <div class="scroll-reveal">
             <div class="section-title">Executive Summary</div>
-            <p style="font-size: 11pt; color: #cbd5e1; text-align: justify; line-height: 1.6;">
+            <p style="font-size: 11pt; color: #cbd5e1; text-align: left; line-height: 1.6;">
                 Enterprise-grade <strong>Lead Mobile Application Engineer</strong> with <strong>8+ years of robust expertise</strong> (2018 – 2026). Industry pioneer in <strong>AI-augmented mobile engineering</strong>, leveraging advanced generative AI frameworks and premium production systems to architect, scale, and ship apps fluidly across any ecosystem—including <strong>React Native, Expo, Flutter, Android Native (Jetpack Compose), and iOS Native</strong>. Master of end-to-end delivery, effortlessly taking ownership of complex micro-animations, design tokens, responsive layout syntax, and highly stable backend communication logic.
             </p>
         </div>
 
         <div class="scroll-reveal">
             <div class="section-title">AI & Multi-Platform Adaptive Capabilities</div>
-            <p style="font-size: 11pt; color: #cbd5e1; text-align: justify; margin-bottom: 12px; line-height: 1.6;">
+            <p style="font-size: 11pt; color: #cbd5e1; text-align: left; margin-bottom: 12px; line-height: 1.6;">
                 Leveraging state-of-the-art AI development environments and paid developer tooling pipelines, I accelerate complex architectural builds from scratch to production:
             </p>
             <ul style="font-size: 10.5pt; color: #cbd5e1; margin-left: 20px; line-height: 1.6;">
@@ -587,7 +597,7 @@
         
         const observerOptions = {
             root: null,
-            rootMargin: "0px 0px -60px 0px", // Trigger slightly before element hits view
+            rootMargin: "0px 0px -60px 0px",
             threshold: 0.08
         };
 
@@ -595,7 +605,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
-                    observer.unobserve(entry.target); // Optimize performance by unobserving once run
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
