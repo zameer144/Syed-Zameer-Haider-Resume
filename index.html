@@ -69,7 +69,7 @@
             z-index: 10;
         }
 
-        /* Mobile Header Element (Hidden on Laptop) */
+        /* Mobile Header Element (Visible on Mobile Only) */
         .mobile-header {
             display: none;
             width: 100%;
@@ -320,23 +320,26 @@
             margin-bottom: 18px;
         }
 
-        /* 📱 CRITICAL MOBILE VIEW RE-ORDERING ARCHITECTURE */
+        /* 🚀 MOBILE SCROLL ANIMATION CSS ENGINE */
+        .scroll-reveal {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* 📱 MOBILE ARCHITECTURE & RESPONSIVENESS CONFIGURATION */
         @media (max-width: 900px) {
             .resume-container {
                 flex-direction: column;
             }
             
-            /* Show Name and Title on very top of Mobile View */
             .mobile-header {
                 display: block;
             }
 
-            /* Hide Laptop Header Block to avoid duplication */
             .main-content .header-block {
                 display: none;
             }
 
-            /* Move Sidebar (Contacts/Skills) to the bottom of the page */
             .sidebar {
                 order: 2; 
                 border-right: none;
@@ -344,20 +347,33 @@
                 padding: 40px 24px;
             }
 
-            /* Keep Primary Content (Summary/Experience) right below Mobile Header */
             .main-content {
                 order: 1;
                 padding: 30px 24px 40px 24px;
             }
 
             .mobile-header .header-block h1 {
-                font-size: 24pt; /* Balanced perfectly for smaller mobile devices */
+                font-size: 24pt;
             }
 
             .timeline-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 2px;
+            }
+
+            /* Enable Smooth Scroll Transitions explicitly for Mobile Devices */
+            .scroll-reveal {
+                opacity: 0;
+                transform: translateY(25px);
+                transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+                will-change: opacity, transform;
+            }
+
+            /* Active state injected by JS intersection listener */
+            .scroll-reveal.revealed {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
@@ -375,7 +391,7 @@
         </div>
     </div>
 
-    <div class="sidebar">
+    <div class="sidebar scroll-reveal">
         <div class="contact-group">
             <strong>Email Address</strong>
             <span>sumair.haider14@gmail.com</span>
@@ -441,115 +457,154 @@
             <div class="ai-tagline">AI-Augmented Full-Stack Mobile Architect</div>
         </div>
 
-        <div class="section-title">Executive Summary</div>
-        <p style="font-size: 11pt; color: #cbd5e1; text-align: justify; line-height: 1.6;">
-            Enterprise-grade <strong>Lead Mobile Application Engineer</strong> with <strong>8+ years of robust expertise</strong> (2018 – 2026). Industry pioneer in <strong>AI-augmented mobile engineering</strong>, leveraging advanced generative AI frameworks and premium production systems to architect, scale, and ship apps fluidly across any ecosystem—including <strong>React Native, Expo, Flutter, Android Native (Jetpack Compose), and iOS Native</strong>. Master of end-to-end delivery, effortlessly taking ownership of complex micro-animations, design tokens, responsive layout syntax, and highly stable backend communication logic.
-        </p>
+        <div class="scroll-reveal">
+            <div class="section-title">Executive Summary</div>
+            <p style="font-size: 11pt; color: #cbd5e1; text-align: justify; line-height: 1.6;">
+                Enterprise-grade <strong>Lead Mobile Application Engineer</strong> with <strong>8+ years of robust expertise</strong> (2018 – 2026). Industry pioneer in <strong>AI-augmented mobile engineering</strong>, leveraging advanced generative AI frameworks and premium production systems to architect, scale, and ship apps fluidly across any ecosystem—including <strong>React Native, Expo, Flutter, Android Native (Jetpack Compose), and iOS Native</strong>. Master of end-to-end delivery, effortlessly taking ownership of complex micro-animations, design tokens, responsive layout syntax, and highly stable backend communication logic.
+            </p>
+        </div>
 
-        <div class="section-title">AI & Multi-Platform Adaptive Capabilities</div>
-        <p style="font-size: 11pt; color: #cbd5e1; text-align: justify; margin-bottom: 12px; line-height: 1.6;">
-            Leveraging state-of-the-art AI development environments and paid developer tooling pipelines, I accelerate complex architectural builds from scratch to production:
-        </p>
-        <ul style="font-size: 10.5pt; color: #cbd5e1; margin-left: 20px; line-height: 1.6;">
-            <li style="margin-bottom: 6px;"><strong>Universal Platform Agility:</strong> Seamlessly engineering high-fidelity modules across Flutter, Jetpack Compose, iOS Swift UI, and React Native CLI.</li>
-            <li style="margin-bottom: 6px;"><strong>AI-Powered Logic Acceleration:</strong> Utilizing AI tools to speed up deep database sync algorithms, complex business logical layers, and custom encryption workflows without sacrificing security.</li>
-            <li style="margin-bottom: 6px;"><strong>End-to-End Execution:</strong> Combining 8 years of foundational engineering experience with AI execution power to craft seamless interactive interfaces, pixel-perfect layouts, and enterprise architecture blueprints single-handedly.</li>
-        </ul>
-
-        <div class="section-title">Chronological Career History</div>
-
-        <div class="timeline-item">
-            <div class="timeline-header">
-                <span class="role-title">Team Lead - Mobile App Engineering</span>
-                <span class="timeline-date">2019 — Present</span>
-            </div>
-            <div class="company-name">Dosafar.com</div>
-            <ul class="bullet-points">
-                <li>Directing architecture & execution blueprints for highly resilient multi-tenant mobile transportation ecosystems.</li>
-                <li>Integrating advanced AI engineering workflows to accelerate platform migrations and multi-platform testing coverage.</li>
-                <li>Pioneered fluid UI optimization workflows, deep-linking routing paths, and optimized REST API payload architectures.</li>
+        <div class="scroll-reveal">
+            <div class="section-title">AI & Multi-Platform Adaptive Capabilities</div>
+            <p style="font-size: 11pt; color: #cbd5e1; text-align: justify; margin-bottom: 12px; line-height: 1.6;">
+                Leveraging state-of-the-art AI development environments and paid developer tooling pipelines, I accelerate complex architectural builds from scratch to production:
+            </p>
+            <ul style="font-size: 10.5pt; color: #cbd5e1; margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 6px;"><strong>Universal Platform Agility:</strong> Seamlessly engineering high-fidelity modules across Flutter, Jetpack Compose, iOS Swift UI, and React Native CLI.</li>
+                <li style="margin-bottom: 6px;"><strong>AI-Powered Logic Acceleration:</strong> Utilizing AI tools to speed up deep database sync algorithms, complex business logical layers, and custom encryption workflows without sacrificing security.</li>
+                <li style="margin-bottom: 6px;"><strong>End-to-End Execution:</strong> Combining 8 years of foundational engineering experience with AI execution power to craft seamless interactive interfaces, pixel-perfect layouts, and enterprise architecture blueprints single-handedly.</li>
             </ul>
         </div>
 
-        <div class="timeline-item">
-            <div class="timeline-header">
-                <span class="role-title">Senior React Native Developer</span>
-                <span class="timeline-date">2019 — Present</span>
-            </div>
-            <div class="company-name">NextApp IS</div>
-            <ul class="bullet-points">
-                <li>Engineered high-scale commercial hybrid apps with advanced caching layers and robust modular logic.</li>
-                <li>Integrated responsive global state engines (Redux/MobX) alongside native system hardware bridges.</li>
-            </ul>
-        </div>
+        <div class="scroll-reveal">
+            <div class="section-title">Chronological Career History</div>
 
-        <div class="timeline-item">
-            <div class="timeline-header">
-                <span class="role-title">Android App Developer</span>
-                <span class="timeline-date">2018 — 2019</span>
-            </div>
-            <div class="company-name">AppsXone</div>
-            <ul class="bullet-points">
-                <li>Promoted rapidly from an entry-level technical role to the primary Core Engineer managing critical provider backend infrastructures.</li>
-            </ul>
-        </div>
-
-        <div class="section-title">Premium Production Portfolio</div>
-        <div class="cards-grid">
-            <div class="glass-card">
-                <div class="card-title">Dosafar Passenger</div>
-                <div class="card-desc">Real-time bus ticketing solution featuring dynamic multi-operator scheduling, instant payment routing, and seat selections.</div>
-                <span class="card-tech">React Native, Push Notifications, Map APIs</span>
-            </div>
-            <div class="glass-card">
-                <div class="card-title">Dosafar Operation</div>
-                <div class="card-desc">Heavy-duty administrative hub tool handling offline agency transactions, real-time sync systems, and validation.</div>
-                <span class="card-tech">Android Native, Local Database Sync, REST Logs</span>
-            </div>
-            <div class="glass-card">
-                <div class="card-title">Dosafar Driver</div>
-                <div class="card-desc">High-performance utility maximizing smart driver bidding, navigation routines, and real-time client location telemetry.</div>
-                <span class="card-tech">React Native CLI, Socket.io, Location Bridges</span>
-            </div>
-            <div class="glass-card">
-                <div class="card-title">Al Emad / Caryaati (Softseek)</div>
-                <div class="card-desc">Elite global multi-vendor car rental system with complex parameter filtration matrices and smooth client onboarding.</div>
-                <span class="card-tech">React Native Expo, Redux, Performance Profilers</span>
-            </div>
-            <div class="glass-card">
-                <div class="card-title">MyStay (Ramz Sol Oman)</div>
-                <div class="card-desc">Luxury hospitality portal handling real-time reservation systems, pricing variations, and detailed property amenities.</div>
-                <span class="card-tech">React Native, State Management, Custom UI</span>
-            </div>
-            <div class="glass-card">
-                <div class="card-title">Foodwalay</div>
-                <div class="card-desc">Hyper-local rapid-delivery app handling live tracking telemetry, automated status triggers, and optimized caching workflows.</div>
-                <span class="card-tech">React Native CLI, Firebase Analytics, Sentry</span>
-            </div>
-            <div class="glass-card wide">
-                <div class="card-title">TriMeditation</div>
-                <div class="card-desc">Premium mental health wellness app equipped with micro-interaction loops, ambient audio playback engines, and smart dynamic scheduling push notifications.</div>
-                <span class="card-tech">Animations, Local Push Notification Scheduling, MobX Architecture</span>
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="role-title">Team Lead - Mobile App Engineering</span>
+                    <span class="timeline-date">2019 — Present</span>
+                </div>
+                <div class="company-name">Dosafar.com</div>
+                <ul class="bullet-points">
+                    <li>Directing architecture & execution blueprints for highly resilient multi-tenant mobile transportation ecosystems.</li>
+                    <li>Integrating advanced AI engineering workflows to accelerate platform migrations and multi-platform testing coverage.</li>
+                    <li>Pioneered fluid UI optimization workflows, deep-linking routing paths, and optimized REST API payload architectures.</li>
+                </ul>
             </div>
         </div>
 
-        <div class="section-title">Academic Credentials</div>
-        <div class="edu-item">
-            <div style="display: flex; justify-content: space-between; font-size: 11pt; flex-wrap: wrap; gap: 4px;">
-                <strong style="color: #ffffff;">BS in Software Engineering</strong>
-                <span style="color: var(--text-muted); font-weight: 600;">2014 — 2018</span>
+        <div class="scroll-reveal">
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="role-title">Senior React Native Developer</span>
+                    <span class="timeline-date">2019 — Present</span>
+                </div>
+                <div class="company-name">NextApp IS</div>
+                <ul class="bullet-points">
+                    <li>Engineered high-scale commercial hybrid apps with advanced caching layers and robust modular logic.</li>
+                    <li>Integrated responsive global state engines (Redux/MobX) alongside native system hardware bridges.</li>
+                </ul>
             </div>
-            <div style="font-size: 10.5pt; color: var(--primary);">University of Sindh, Pakistan</div>
         </div>
-        <div class="edu-item">
-            <div style="display: flex; justify-content: space-between; font-size: 11pt; flex-wrap: wrap; gap: 4px;">
-                <strong style="color: #ffffff;">HSC (Pre-Engineering)</strong>
-                <span style="color: var(--text-muted); font-weight: 600;">2011 — 2013</span>
+
+        <div class="scroll-reveal">
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="role-title">Android App Developer</span>
+                    <span class="timeline-date">2018 — 2019</span>
+                </div>
+                <div class="company-name">AppsXone</div>
+                <ul class="bullet-points">
+                    <li>Promoted rapidly from an entry-level technical role to the primary Core Engineer managing critical provider backend infrastructures.</li>
+                </ul>
             </div>
-            <div style="font-size: 10.5pt; color: var(--primary);">Sindh Board of Intermediate & Secondary Education, Pakistan</div>
+        </div>
+
+        <div class="scroll-reveal">
+            <div class="section-title">Premium Production Portfolio</div>
+            <div class="cards-grid">
+                <div class="glass-card">
+                    <div class="card-title">Dosafar Passenger</div>
+                    <div class="card-desc">Real-time bus ticketing solution featuring dynamic multi-operator scheduling, instant payment routing, and seat selections.</div>
+                    <span class="card-tech">React Native, Push Notifications, Map APIs</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Dosafar Operation</div>
+                    <div class="card-desc">Heavy-duty administrative hub tool handling offline agency transactions, real-time sync systems, and validation.</div>
+                    <span class="card-tech">Android Native, Local Database Sync, REST Logs</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Dosafar Driver</div>
+                    <div class="card-desc">High-performance utility maximizing smart driver bidding, navigation routines, and real-time client location telemetry.</div>
+                    <span class="card-tech">React Native CLI, Socket.io, Location Bridges</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Al Emad / Caryaati (Softseek)</div>
+                    <div class="card-desc">Elite global multi-vendor car rental system with complex parameter filtration matrices and smooth client onboarding.</div>
+                    <span class="card-tech">React Native Expo, Redux, Performance Profilers</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">MyStay (Ramz Sol Oman)</div>
+                    <div class="card-desc">Luxury hospitality portal handling real-time reservation systems, pricing variations, and detailed property amenities.</div>
+                    <span class="card-tech">React Native, State Management, Custom UI</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Foodwalay</div>
+                    <div class="card-desc">Hyper-local rapid-delivery app handling live tracking telemetry, automated status triggers, and optimized caching workflows.</div>
+                    <span class="card-tech">React Native CLI, Firebase Analytics, Sentry</span>
+                </div>
+                <div class="glass-card wide">
+                    <div class="card-title">TriMeditation</div>
+                    <div class="card-desc">Premium mental health wellness app equipped with micro-interaction loops, ambient audio playback engines, and smart dynamic scheduling push notifications.</div>
+                    <span class="card-tech">Animations, Local Push Notification Scheduling, MobX Architecture</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-reveal" style="margin-top: 30px;">
+            <div class="section-title">Academic Credentials</div>
+            <div class="edu-item">
+                <div style="display: flex; justify-content: space-between; font-size: 11pt; flex-wrap: wrap; gap: 4px;">
+                    <strong style="color: #ffffff;">BS in Software Engineering</strong>
+                    <span style="color: var(--text-muted); font-weight: 600;">2014 — 2018</span>
+                </div>
+                <div style="font-size: 10.5pt; color: var(--primary);">University of Sindh, Pakistan</div>
+            </div>
+            <div class="edu-item">
+                <div style="display: flex; justify-content: space-between; font-size: 11pt; flex-wrap: wrap; gap: 4px;">
+                    <strong style="color: #ffffff;">HSC (Pre-Engineering)</strong>
+                    <span style="color: var(--text-muted); font-weight: 600;">2011 — 2013</span>
+                </div>
+                <div style="font-size: 10.5pt; color: var(--primary);">Sindh Board of Intermediate & Secondary Education, Pakistan</div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: "0px 0px -60px 0px", // Trigger slightly before element hits view
+            threshold: 0.08
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target); // Optimize performance by unobserving once run
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(element => {
+            revealOnScroll.observe(element);
+        });
+    });
+</script>
 
 </body>
 </html>
