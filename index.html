@@ -47,7 +47,7 @@
 
         .resume-container {
             width: 100%;
-            max-width: 100%; /* Made fully fluid across widescreen laptops */
+            max-width: 100%;
             min-height: 100vh;
             background: rgba(15, 23, 42, 0.85);
             display: flex;
@@ -83,49 +83,49 @@
         }
 
         .header-block h1 {
-            font-size: 28pt;
+            font-size: 32pt; /* Increased from 28pt */
             font-weight: 800;
             color: #ffffff;
             letter-spacing: -0.5px;
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
         .header-block .title-sub {
-            font-size: 14pt;
+            font-size: 15pt; /* Increased from 14pt */
             font-weight: 700;
             color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-top: 6px;
+            margin-top: 8px;
         }
         
         .header-block .ai-tagline {
-            font-size: 10.5pt;
+            font-size: 11.5pt; /* Increased from 10.5pt */
             color: var(--accent-ai);
             font-weight: 600;
-            margin-top: 4px;
+            margin-top: 6px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .section-title {
-            font-size: 12pt;
+            font-size: 13.5pt; /* Increased from 12pt */
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.2px;
             color: #ffffff;
             margin-top: 35px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 6px;
+            padding-bottom: 8px;
         }
 
         .sidebar .section-title {
             color: var(--primary);
             border-bottom-color: rgba(56, 189, 248, 0.2);
-            margin-top: 25px;
+            margin-top: 30px;
         }
         
         .sidebar .section-title.ai-title {
@@ -134,19 +134,20 @@
         }
 
         .contact-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .contact-group strong {
             display: block;
-            font-size: 8.5pt;
+            font-size: 9.5pt; /* Increased from 8.5pt */
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-bottom: 2px;
         }
 
         .contact-group span {
-            font-size: 10.5pt;
+            font-size: 11.5pt; /* Increased from 10.5pt */
             color: #cbd5e1;
             word-break: break-all;
         }
@@ -154,16 +155,16 @@
         .skills-flex {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
+            gap: 10px;
+            margin-top: 12px;
         }
 
         .skill-pill {
             background: rgba(30, 41, 59, 0.8);
             color: #e2e8f0;
-            font-size: 9pt;
+            font-size: 10pt; /* Increased from 9pt */
             font-weight: 500;
-            padding: 6px 12px;
+            padding: 8px 14px;
             border-radius: 6px;
             border: 1px solid rgba(56, 189, 248, 0.15);
             transition: all 0.3s ease;
@@ -189,8 +190,8 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 25px;
-            padding-left: 20px;
+            margin-bottom: 30px;
+            padding-left: 22px;
             border-left: 2px solid #1e293b;
         }
 
@@ -198,7 +199,7 @@
             content: '';
             position: absolute;
             left: -6px;
-            top: 6px;
+            top: 8px;
             width: 10px;
             height: 10px;
             background-color: var(--primary);
@@ -211,50 +212,51 @@
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 6px;
+            margin-bottom: 4px;
         }
 
         .role-title {
-            font-size: 11.5pt;
+            font-size: 12.5pt; /* Increased from 11.5pt */
             font-weight: 700;
             color: #ffffff;
         }
 
         .company-name {
-            font-size: 10pt;
+            font-size: 11pt; /* Increased from 10pt */
             font-weight: 600;
             color: var(--primary);
         }
 
         .timeline-date {
-            font-size: 9.5pt;
+            font-size: 10.5pt; /* Increased from 9.5pt */
             color: var(--text-muted);
             font-weight: 600;
         }
 
         .bullet-points {
-            font-size: 10pt;
+            font-size: 11pt; /* Increased from 10pt */
             color: #cbd5e1;
-            margin-left: 15px;
-            margin-top: 5px;
+            margin-left: 18px;
+            margin-top: 6px;
         }
 
         .bullet-points li {
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 20px;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         .glass-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.03);
             border-radius: 8px;
-            padding: 18px;
+            padding: 20px;
             position: relative;
             transition: all 0.3s ease;
         }
@@ -283,31 +285,32 @@
         }
 
         .card-title {
-            font-size: 11pt;
+            font-size: 12pt; /* Increased from 11pt */
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .card-desc {
-            font-size: 9.5pt;
+            font-size: 10.5pt; /* Increased from 9.5pt */
             color: #94a3b8;
             text-align: justify;
+            line-height: 1.5;
         }
 
         .card-tech {
-            font-size: 8.5pt;
+            font-size: 9.5pt; /* Increased from 8.5pt */
             color: var(--primary);
             font-weight: 600;
-            margin-top: 8px;
+            margin-top: 10px;
             display: block;
         }
 
         .edu-item {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
-        /* Responsive Media Queries Updates */
+        /* Mobile Formatting & Responsiveness Updates */
         @media (max-width: 900px) {
             .resume-container {
                 flex-direction: column;
@@ -315,10 +318,18 @@
             .sidebar {
                 border-right: none;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-                padding: 40px 20px;
+                padding: 40px 24px;
             }
             .main-content {
-                padding: 40px 20px;
+                padding: 40px 24px;
+            }
+            .header-block h1 {
+                font-size: 26pt; /* Balanced for mobile view */
+            }
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
             }
         }
     </style>
@@ -373,18 +384,18 @@
         <div class="section-title">Certifications</div>
         <div class="contact-group">
             <span class="timeline-date">2018</span>
-            <div style="font-size: 9.5pt; font-weight:700;">Certified Android Development</div>
-            <div style="font-size: 8.5pt; color: var(--text-muted);">Gexton Education, Pakistan</div>
+            <div style="font-size: 10.5pt; font-weight:700; margin-top:2px;">Certified Android Development</div>
+            <div style="font-size: 9.5pt; color: var(--text-muted);">Gexton Education, Pakistan</div>
         </div>
         <div class="contact-group">
             <span class="timeline-date">2017</span>
-            <div style="font-size: 9.5pt; font-weight:700;">Professional Java Certified</div>
-            <div style="font-size: 8.5pt; color: var(--text-muted);">Gexton Education, Pakistan</div>
+            <div style="font-size: 10.5pt; font-weight:700; margin-top:2px;">Professional Java Certified</div>
+            <div style="font-size: 9.5pt; color: var(--text-muted);">Gexton Education, Pakistan</div>
         </div>
 
         <div class="section-title">Languages</div>
-        <div style="font-size: 10.5pt; color: #cbd5e1; margin-bottom: 5px;">Urdu <span style="color:var(--text-muted); font-size:8.5pt;">(Native)</span></div>
-        <div style="font-size: 10.5pt; color: #cbd5e1;">English <span style="color:var(--text-muted); font-size:8.5pt;">(Professional)</span></div>
+        <div style="font-size: 11.5pt; color: #cbd5e1; margin-bottom: 6px;">Urdu <span style="color:var(--text-muted); font-size:9.5pt;">(Native)</span></div>
+        <div style="font-size: 11.5pt; color: #cbd5e1;">English <span style="color:var(--text-muted); font-size:9.5pt;">(Professional)</span></div>
     </div>
 
     <div class="main-content">
@@ -395,15 +406,15 @@
         </div>
 
         <div class="section-title">Executive Summary</div>
-        <p style="font-size: 10pt; color: #cbd5e1; text-align: justify; line-height: 1.6;">
+        <p style="font-size: 11pt; color: #cbd5e1; text-align: justify; line-height: 1.6;">
             Enterprise-grade <strong>Lead Mobile Application Engineer</strong> with <strong>8+ years of robust expertise</strong> (2018 – 2026). Industry pioneer in <strong>AI-augmented mobile engineering</strong>, leveraging advanced generative AI frameworks and premium production systems to architect, scale, and ship apps fluidly across any ecosystem—including <strong>React Native, Expo, Flutter, Android Native (Jetpack Compose), and iOS Native</strong>. Master of end-to-end delivery, effortlessly taking ownership of complex micro-animations, design tokens, responsive layout syntax, and highly stable backend communication logic.
         </p>
 
         <div class="section-title">AI & Multi-Platform Adaptive Capabilities</div>
-        <p style="font-size: 10pt; color: #cbd5e1; text-align: justify; margin-bottom: 12px; line-height: 1.6;">
+        <p style="font-size: 11pt; color: #cbd5e1; text-align: justify; margin-bottom: 12px; line-height: 1.6;">
             Leveraging state-of-the-art AI development environments and paid developer tooling pipelines, I accelerate complex architectural builds from scratch to production:
         </p>
-        <ul style="font-size: 9.5pt; color: #cbd5e1; margin-left: 20px; line-height: 1.6;">
+        <ul style="font-size: 10.5pt; color: #cbd5e1; margin-left: 20px; line-height: 1.6;">
             <li style="margin-bottom: 6px;"><strong>Universal Platform Agility:</strong> Seamlessly engineering high-fidelity modules across Flutter, Jetpack Compose, iOS Swift UI, and React Native CLI.</li>
             <li style="margin-bottom: 6px;"><strong>AI-Powered Logic Acceleration:</strong> Utilizing AI tools to speed up deep database sync algorithms, complex business logical layers, and custom encryption workflows without sacrificing security.</li>
             <li style="margin-bottom: 6px;"><strong>End-to-End Execution:</strong> Combining 8 years of foundational engineering experience with AI execution power to craft seamless interactive interfaces, pixel-perfect layouts, and enterprise architecture blueprints single-handedly.</li>
@@ -488,18 +499,18 @@
 
         <div class="section-title">Academic Credentials</div>
         <div class="edu-item">
-            <div style="display: flex; justify-content: space-between; font-size: 10pt;">
+            <div style="display: flex; justify-content: space-between; font-size: 11pt; flex-wrap: wrap; gap: 4px;">
                 <strong style="color: #ffffff;">BS in Software Engineering</strong>
                 <span style="color: var(--text-muted); font-weight: 600;">2014 — 2018</span>
             </div>
-            <div style="font-size: 9.5pt; color: var(--primary);">University of Sindh, Pakistan</div>
+            <div style="font-size: 10.5pt; color: var(--primary);">University of Sindh, Pakistan</div>
         </div>
         <div class="edu-item">
-            <div style="display: flex; justify-content: space-between; font-size: 10pt;">
+            <div style="display: flex; justify-content: space-between; font-size: 11pt; flex-wrap: wrap; gap: 4px;">
                 <strong style="color: #ffffff;">HSC (Pre-Engineering)</strong>
                 <span style="color: var(--text-muted); font-weight: 600;">2011 — 2013</span>
             </div>
-            <div style="font-size: 9.5pt; color: var(--primary);">Sindh Board of Intermediate & Secondary Education, Pakistan</div>
+            <div style="font-size: 10.5pt; color: var(--primary);">Sindh Board of Intermediate & Secondary Education, Pakistan</div>
         </div>
     </div>
 </div>
