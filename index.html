@@ -1,278 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PixelLens · GitLab</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, initial-scale=1.0">
+    <title>Syed Zameer Haider - Executive AI-Powered Portfolio Resume</title>
+    <style>
+        :root {
+            --bg-deep: #0b0f19;
+            --bg-surface: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.45);
+            --primary: #38bdf8;
+            --accent-ai: #a78bfa;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-glow: rgba(255, 255, 255, 0.05);
+        }
 
-    body {
-      background-color: #ffffff;
-      color: #1f1f1f;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
 
-    /* Left Sidebar */
-    .sidebar {
-      width: 220px;
-      border-right: 1px solid #e1e1e8;
-      background-color: #fafafa;
-      display: flex;
-      flex-direction: column;
-      flex-shrink: 0;
-    }
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: auto;
+            position: relative;
+        }
 
-    .project-header {
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid #e1e1e8;
-    }
+        /* Ambient Background Grid Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-    .project-avatar {
-      width: 32px;
-      height: 32px;
-      background-color: #e24329;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-    }
+        @keyframes flowGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    .project-title {
-      font-size: 14px;
-      font-weight: 600;
-    }
+        .resume-container {
+            width: 100%;
+            min-width: 1200px;
+            min-height: 100vh;
+            background: rgba(15, 23, 42, 0.80);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            z-index: 1;
+        }
 
-    .nav-list {
-      list-style: none;
-      padding: 8px 0;
-      overflow-y: auto;
-    }
+        .top-glow-bar {
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6, #38bdf8);
+            background-size: 300% 300%;
+            animation: flowGlow 6s ease infinite;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
 
-    .nav-item {
-      padding: 8px 16px;
-      font-size: 13px;
-      color: #4c4c4c;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
+        .sidebar {
+            width: 340px;
+            flex-shrink: 0;
+            background-color: var(--bg-surface);
+            padding: 50px 30px;
+            border-right: 1px solid var(--border-glow);
+            position: relative;
+        }
 
-    .nav-item:hover {
-      background-color: #ebebee;
-      color: #1f1f1f;
-    }
+        .main-content {
+            flex-grow: 1;
+            padding: 50px 45px;
+            background: linear-gradient(135deg, rgba(11, 15, 25, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+        }
 
-    .nav-item.active {
-      background-color: #e8e8ed;
-      color: #1f1f1f;
-      font-weight: 600;
-    }
+        /* Sophisticated Smooth Fade up Animation Definitions */
+        .reveal-node {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s cubic-bezier(0.21, 0.6, 0.35, 1), 
+                        transform 0.8s cubic-bezier(0.21, 0.6, 0.35, 1);
+            will-change: transform, opacity;
+        }
 
-    /* Main Content Area */
-    .main-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
+        .reveal-node.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    /* Top Navigation */
-    .top-bar {
-      height: 48px;
-      border-bottom: 1px solid #e1e1e8;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      background-color: #ffffff;
-    }
+        /* Staggered Delay Intervals for Ultra Soft Transitions */
+        .delay-1 { transition-delay: 100ms; }
+        .delay-2 { transition-delay: 200ms; }
+        .delay-3 { transition-delay: 300ms; }
+        .delay-4 { transition-delay: 400ms; }
 
-    .breadcrumbs {
-      font-size: 13px;
-      color: #666;
-    }
+        .header-block h1 {
+            font-size: 32pt;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 60%, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .breadcrumbs span {
-      color: #1f1f1f;
-      font-weight: 500;
-    }
+        .header-block .title-sub {
+            font-size: 15pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 8px;
+        }
+        
+        .header-block .ai-tagline {
+            font-size: 11.5pt;
+            color: var(--accent-ai);
+            font-weight: 600;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    .search-input {
-      background-color: #f0f0f4;
-      border: 1px solid #dcdcde;
-      border-radius: 4px;
-      padding: 6px 12px;
-      font-size: 12px;
-      width: 200px;
-      outline: none;
-    }
+        .section-title {
+            font-size: 13.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #ffffff;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 8px;
+        }
 
-    .content-area {
-      padding: 24px;
-      max-width: 900px;
-    }
+        .sidebar .section-title {
+            color: var(--primary);
+            border-bottom-color: rgba(56, 189, 248, 0.2);
+            margin-top: 30px;
+        }
+        
+        .sidebar .section-title.ai-title {
+            color: var(--accent-ai);
+            border-bottom-color: rgba(167, 139, 250, 0.3);
+        }
 
-    /* Alert Banner */
-    .alert-success {
-      background-color: #eaf5ea;
-      border: 1px solid #c3e6cb;
-      color: #155724;
-      padding: 12px 16px;
-      border-radius: 4px;
-      font-size: 13px;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        .contact-group {
+            margin-bottom: 20px;
+            display: block !important;
+            transition: transform 0.3s ease;
+        }
+        .contact-group:hover {
+            transform: translateX(4px);
+        }
 
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
+        .contact-group strong {
+            display: block;
+            font-size: 9.5pt;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
 
-    /* Setup Options */
-    .options-list {
-      list-style: none;
-      margin-bottom: 24px;
-    }
+        .contact-group span {
+            font-size: 11.5pt;
+            color: #cbd5e1;
+            word-break: break-all;
+        }
 
-    .options-list li {
-      margin-bottom: 8px;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        .skills-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
 
-    .options-list a {
-      color: #1068bf;
-      text-decoration: none;
-      font-weight: 500;
-    }
+        .skill-pill {
+            background: rgba(30, 41, 59, 0.6);
+            color: #e2e8f0;
+            font-size: 10pt;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(56, 189, 248, 0.12);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-    .options-list a:hover {
-      text-decoration: underline;
-    }
+        .skill-pill:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+        }
 
-    /* Command Box */
-    .command-section-title {
-      font-size: 13px;
-      color: #525252;
-      margin-bottom: 8px;
-    }
+        .skill-pill.ai-pill {
+            border-color: rgba(167, 139, 250, 0.2);
+            background: rgba(88, 28, 135, 0.15);
+        }
+        .skill-pill.ai-pill:hover {
+            background: rgba(167, 139, 250, 0.25);
+            border-color: var(--accent-ai);
+            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.2);
+        }
 
-    .code-box {
-      background-color: #f6f6f8;
-      border: 1px solid #dcdcde;
-      border-radius: 4px;
-      padding: 14px 16px;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-      font-size: 12px;
-      line-height: 1.6;
-      color: #24292e;
-      position: relative;
-    }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding-left: 22px;
+            border-left: 2px solid #1e293b;
+            transition: border-color 0.4s ease;
+        }
+        .timeline-item:hover {
+            border-left-color: var(--primary);
+        }
 
-    .code-box .comment {
-      color: #6a737d;
-    }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .timeline-item:hover::before {
+            transform: scale(1.3);
+        }
 
-    .code-box .highlight {
-      color: #22863a;
-    }
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
 
-    /* Bottom Features */
-    .feature-list {
-      margin-top: 24px;
-      list-style: none;
-    }
+        .role-title {
+            font-size: 12.5pt;
+            font-weight: 700;
+            color: #ffffff;
+        }
 
-    .feature-list li {
-      font-size: 14px;
-      color: #1068bf;
-      margin-bottom: 10px;
-      cursor: pointer;
-    }
+        .company-name {
+            font-size: 11pt;
+            font-weight: 600;
+            color: var(--primary);
+        }
 
-    .feature-list li:hover {
-      text-decoration: underline;
-    }
-  </style>
+        .timeline-date {
+            font-size: 10.5pt;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .bullet-points {
+            font-size: 11pt;
+            color: #cbd5e1;
+            margin-left: 18px;
+            margin-top: 6px;
+        }
+
+        .bullet-points li {
+            margin-bottom: 6px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 18px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            background: rgba(30, 41, 59, 0.65);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 24px rgba(11, 15, 25, 0.5);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), transparent);
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            transition: height 0.4s ease;
+        }
+
+        .glass-card.wide {
+            grid-column: 1 / -1;
+        }
+
+        .card-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .card-desc {
+            font-size: 10.5pt;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        .card-tech {
+            font-size: 9.5pt;
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .edu-item {
+            margin-bottom: 18px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Left Sidebar -->
-  <aside class="sidebar">
-    <div class="project-header">
-      <div class="project-avatar">P</div>
-      <div class="project-title">PixelLens</div>
+<div class="resume-container">
+    <div class="top-glow-bar"></div>
+
+    <div class="sidebar">
+        <div class="reveal-node contact-group">
+            <strong>Email Address</strong>
+            <span>sumair.haider14@gmail.com</span>
+        </div>
+        <div class="reveal-node contact-group delay-1">
+            <strong>Contact Number</strong>
+            <span>+92 315 3789003</span>
+        </div>
+        <div class="reveal-node contact-group delay-2">
+            <strong>Location</strong>
+            <span>Hyderabad, Sindh, Pakistan</span>
+        </div>
+
+        <div class="reveal-node sidebar-mobile-card delay-3">
+            <div class="section-title ai-title">AI & Next-Gen Stack</div>
+            <div class="skills-flex">
+                <span class="skill-pill ai-pill">AI LLM Prompting & Ops</span>
+                <span class="skill-pill ai-pill">AI Code Copilots</span>
+                <span class="skill-pill ai-pill">Cross-Stack Architect</span>
+                <span class="skill-pill ai-pill">Flutter Cross-Platform</span>
+                <span class="skill-pill ai-pill">Jetpack Compose</span>
+                <span class="skill-pill ai-pill">iOS Native UI</span>
+            </div>
+        </div>
+
+        <div class="reveal-node sidebar-mobile-card delay-4">
+            <div class="section-title">Technical Mastery</div>
+            <div class="skills-flex">
+                <span class="skill-pill">React Native (CLI/Expo)</span>
+                <span class="skill-pill">Android Native</span>
+                <span class="skill-pill">TypeScript & JS</span>
+                <span class="skill-pill">Kotlin / Java</span>
+                <span class="skill-pill">Redux / MobX</span>
+                <span class="skill-pill">REST APIs / Postman</span>
+                <span class="skill-pill">Firebase Ecosystem</span>
+                <span class="skill-pill">Push Notifications</span>
+                <span class="skill-pill">Deep Linking / App Links</span>
+                <span class="skill-pill">UI/UX Glassmorphism</span>
+                <span class="skill-pill">State Management</span>
+                <span class="skill-pill">CI/CD & App Stores</span>
+                <span class="skill-pill">Agile Scrum / Team Lead</span>
+                <span class="skill-pill">Sentry Bug Tracking</span>
+            </div>
+        </div>
+
+        <div class="reveal-node sidebar-mobile-card delay-4">
+            <div class="section-title">Certifications</div>
+            <div class="contact-group" style="margin-bottom: 15px;">
+                <span class="timeline-date">2018</span>
+                <div style="font-size: 10.5pt; font-weight:700; margin-top:2px; color:#ffffff;">Certified Android Development</div>
+                <div style="font-size: 9.5pt; color: var(--text-muted);">Gexton Education, Pakistan</div>
+            </div>
+            <div class="contact-group" style="margin-bottom: 0;">
+                <span class="timeline-date">2017</span>
+                <div style="font-size: 10.5pt; font-weight:700; margin-top:2px; color:#ffffff;">Professional Java Certified</div>
+                <div style="font-size: 9.5pt; color: var(--text-muted);">Gexton Education, Pakistan</div>
+            </div>
+        </div>
+
+        <div class="reveal-node sidebar-mobile-card delay-4">
+            <div class="section-title">Languages</div>
+            <div style="font-size: 11.5pt; color: #cbd5e1; margin-bottom: 6px;">Urdu <span style="color:var(--text-muted); font-size:9.5pt;">(Native)</span></div>
+            <div style="font-size: 11.5pt; color: #cbd5e1;">English <span style="color:var(--text-muted); font-size:9.5pt;">(Professional)</span></div>
+        </div>
     </div>
-    <ul class="nav-list">
-      <li class="nav-item">📌 Pinned</li>
-      <li class="nav-item">⚙️ Manage</li>
-      <li class="nav-item">📋 Plan</li>
-      <li class="nav-item active">💻 Code</li>
-      <li class="nav-item">🔨 Build</li>
-      <li class="nav-item">🚀 Deploy</li>
-      <li class="nav-item">🤖 AI</li>
-    </ul>
-  </aside>
 
-  <!-- Main Content -->
-  <main class="main-wrapper">
-    <header class="top-bar">
-      <div class="breadcrumbs">
-        zameer haider / <span>PixelLens</span>
-      </div>
-      <input type="text" class="search-input" placeholder="Search or go to..." />
-    </header>
+    <div class="main-content">
+        <div class="reveal-node header-block">
+            <h1>SYED ZAMEER HAIDER</h1>
+            <div class="title-sub">Lead Mobile Application Engineer</div>
+            <div class="ai-tagline">AI-Augmented Full-Stack Mobile Architect</div>
+        </div>
 
-    <div class="content-area">
-      <!-- Success Alert -->
-      <div class="alert-success">
-        ✓ Project 'PixelLens' was successfully created.
-      </div>
+        <div class="reveal-node mobile-section-card delay-1">
+            <div class="section-title">Executive Summary</div>
+            <p style="font-size: 11pt; color: #cbd5e1; text-align: left; line-height: 1.6;">
+                Enterprise-grade <strong>Lead Mobile Application Engineer</strong> with <strong>8+ years of robust expertise</strong> (2018 – 2026). Industry pioneer in <strong>AI-augmented mobile engineering</strong>, leveraging advanced generative AI frameworks and premium production systems to architect, scale, and ship apps fluidly across any ecosystem—including <strong>React Native, Expo, Flutter, Android Native (Jetpack Compose), and iOS Native</strong>. Master of end-to-end delivery, effortlessly taking ownership of complex micro-animations, design tokens, responsive layout syntax, and highly stable backend communication logic.
+            </p>
+            <p style="font-size: 11pt; color: #cbd5e1; text-align: left; margin-top: 15px; margin-bottom: 10px; line-height: 1.6;">
+                Leveraging state-of-the-art AI development environments, I accelerate complex architectural builds from scratch to production:
+            </p>
+            <ul style="font-size: 10.5pt; color: #cbd5e1; margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 4px;"><strong>Universal Platform Agility:</strong> Seamless engineering modules across Flutter, Compose, Swift UI, and React Native.</li>
+                <li style="margin-bottom: 4px;"><strong>Logic Acceleration:</strong> Speeding up deep database sync algorithms and logical layers via AI tools securely.</li>
+            </ul>
+        </div>
 
-      <h2 class="section-title">Add your files</h2>
+        <div class="reveal-node mobile-section-card delay-1">
+            <div class="section-title">Chronological Career History</div>
 
-      <ul class="options-list">
-        <li>➕ <a href="#">Create or upload files</a></li>
-        <li>💻 Push an existing Git repository with the commands below</li>
-      </ul>
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="role-title">Team Lead - Mobile App Engineering</span>
+                    <span class="timeline-date">2019 — Present</span>
+                </div>
+                <div class="company-name">Dosafar.com</div>
+                <ul class="bullet-points">
+                    <li>Directing architecture & execution blueprints for multi-tenant mobile transportation ecosystems.</li>
+                    <li>Integrating AI engineering workflows to accelerate platform migrations and cross-testing coverage.</li>
+                    <li>Pioneered fluid UI optimization workflows, deep-linking, and optimized REST payload architectures.</li>
+                </ul>
+            </div>
 
-      <p class="command-section-title"><strong>Push an existing folder / repository:</strong></p>
-      
-      <div class="code-box">
-        <span class="comment"># Navigate into your existing project</span><br />
-        cd existing_repo<br />
-        git remote add origin <span class="highlight">https://gitlab.com/zameer14/pixellens.git</span><br />
-        git branch -M main<br />
-        git push -uf origin main
-      </div>
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="role-title">Senior React Native Developer</span>
+                    <span class="timeline-date">2019 — Present</span>
+                </div>
+                <div class="company-name">NextApp IS</div>
+                <ul class="bullet-points">
+                    <li>Engineered high-scale commercial hybrid apps with advanced caching layers and robust modular logic.</li>
+                    <li>Integrated responsive global state engines (Redux/MobX) alongside native system hardware bridges.</li>
+                </ul>
+            </div>
 
-      <ul class="feature-list">
-        <li>▶ Integrate with your tools</li>
-        <li>▶ Collaborate with your team</li>
-      </ul>
+            <div class="timeline-item" style="margin-bottom: 0;">
+                <div class="timeline-header">
+                    <span class="role-title">Android App Developer</span>
+                    <span class="timeline-date">2018 — 2019</span>
+                </div>
+                <div class="company-name">AppsXone</div>
+                <ul class="bullet-points">
+                    <li>Promoted rapidly from an entry-level technical role to the primary Core Engineer managing critical provider backend infrastructures.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="reveal-node mobile-section-card delay-2">
+            <div class="section-title">Premium Production Portfolio</div>
+            <div class="cards-grid">
+                <div class="glass-card">
+                    <div class="card-title">Dosafar Passenger</div>
+                    <div class="card-desc">Real-time bus ticketing solution featuring dynamic multi-operator scheduling, instant payment routing, and seat selections.</div>
+                    <span class="card-tech">React Native, Push Notifications, Map APIs</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Dosafar Operation</div>
+                    <div class="card-desc">Heavy-duty administrative hub tool handling offline agency transactions, real-time sync systems, and validation.</div>
+                    <span class="card-tech">Android Native, Local Database Sync, REST Logs</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Dosafar Driver</div>
+                    <div class="card-desc">High-performance utility maximizing smart driver bidding, navigation routines, and real-time client location telemetry.</div>
+                    <span class="card-tech">React Native CLI, Socket.io, Location Bridges</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Al Emad / Caryaati (Softseek)</div>
+                    <div class="card-desc">Elite global multi-vendor car rental system with complex parameter filtration matrices and smooth client onboarding.</div>
+                    <span class="card-tech">React Native Expo, Redux, Performance Profilers</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">MyStay (Ramz Sol Oman)</div>
+                    <div class="card-desc">Luxury hospitality portal handling real-time reservation systems, pricing variations, and detailed property amenities.</div>
+                    <span class="card-tech">React Native, State Management, Custom UI</span>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Foodwalay</div>
+                    <div class="card-desc">Hyper-local rapid-delivery app handling live tracking telemetry, automated status triggers, and optimized caching workflows.</div>
+                    <span class="card-tech">React Native CLI, Firebase Analytics, Sentry</span>
+                </div>
+                <div class="glass-card wide">
+                    <div class="card-title">TriMeditation</div>
+                    <div class="card-desc">Premium mental health wellness app equipped with micro-interaction loops, ambient audio playback engines, and smart dynamic scheduling push notifications.</div>
+                    <span class="card-tech">Animations, Local Push Notification Scheduling, MobX Architecture</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="reveal-node mobile-section-card delay-2">
+            <div class="section-title">Academic Credentials</div>
+            <div class="edu-item">
+                <div style="display: flex; justify-content: space-between; font-size: 11pt; flex-wrap: wrap; gap: 4px;">
+                    <strong style="color: #ffffff;">BS in Software Engineering</strong>
+                    <span style="color: var(--text-muted); font-weight: 600;">2014 — 2018</span>
+                </div>
+                <div style="font-size: 10.5pt; color: var(--primary);">University of Sindh, Pakistan</div>
+            </div>
+            <div class="edu-item" style="margin-bottom: 0;">
+                <div style="display: flex; justify-content: space-between; font-size: 11pt; flex-wrap: wrap; gap: 4px;">
+                    <strong style="color: #ffffff;">HSC (Pre-Engineering)</strong>
+                    <span style="color: var(--text-muted); font-weight: 600;">2011 — 2013</span>
+                </div>
+                <div style="font-size: 10.5pt; color: var(--primary);">Sindh Board of Intermediate & Secondary Education, Pakistan</div>
+            </div>
+        </div>
     </div>
-  </main>
+</div>
 
+<script>
+    // Intersection Observer script for ultra-smooth soft scrolling reveal
+    document.addEventListener("DOMContentLoaded", () => {
+        const revealNodes = document.querySelectorAll('.reveal-node');
+        
+        const observerConfig = {
+            root: null,
+            rootMargin: "0px 0px -60px 0px", // Trigger slightly before element enters viewport
+            threshold: 0.05
+        };
+
+        const scrollEngine = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Injecting active state softly
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerConfig);
+
+        revealNodes.forEach(node => {
+            scrollEngine.observe(node);
+        });
+    });
+</script>
 </body>
 </html>
